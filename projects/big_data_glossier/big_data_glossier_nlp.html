@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Clare Garberg</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1>Glossier Business Insights</h1>
+						<h3>A "big data" analysis using PySpark and Azure Databricks.</h3>
+						<p>By: Clare Garberg, Stephanie Plaza, Amalia Stahl, Kajal Tiwary</p>
+					</header>
+
+					<ul class="icons">
+						<li><a href="../../index.html" class="icon solid fa-home alt"><span class="label">Home</span></a></li>
+					</ul>
+
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="big_data_glossier_intro.html">Introduction</a></li>
+							<li><a href="big_data_glossier_eda.html">Exploratory Data Analysis</a></li>
+							<li><a href="big_data_glossier_nlp.html" class="active">Natural Language Processing</a></li>
+							<li><a href="big_data_glossier_ml.html">Machine Learning</a></li>
+							<li><a href="big_data_glossier_conclusion.html">Conclusion</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Content -->
+							<section id="content" class="main">
+								<h2>Natural Language Processing</h2>
+
+								<p>Our executive objective is to determine the most optimal growth and marketing strategy for Glossier. Specifically, we assessed competitor behavior, product strategy, locations of interest, and related external factors. Through this preliminary research, we have identified three key products - limited edition products (le), protip, and generation g - that should be included in the newest product kits. This is because these products are both mentioned frequently and are almost always mentioned in a positive context (> 90%), as evident in Table 1 below. Amongst our direct competitors in the beauty industry, we have identified Sephora as the leader. As evident in Table 2, Sephora has the highest number of mentions amongst competitors and a 78% positive mention rate. As such, our Glossier market researchers will closely examine Sephora’s marketing, launch, and growth strategies to identify opportunities in our expansion plan.</p>
+
+								<p>We have also identified that interest in Glossier and the number of COVID-19 cases have a sequential relationship. Thus, we can leverage COVID-19 forecasts to predict when Glossier demand will increase and plan inventory accordingly. Additionally, we have identified low demand for Glossier products across U.S. and European cities from social media platforms and that physical store expansion cannot currently be assessed. Sustainability does not appear to be important for our customers when identifying brands they will shop at. As such, we have ample time to revamp those efforts without the risk of losing our customers. The details that bolster these findings and recommendations are described at length below.</p>
+
+								<h4><strong>Table 1: Overall Market Sentiment Of Top 10 Glossier Products</strong></h4>
+						        <iframe src="images/nlp/ glossier_sent_table.html" width="100%" height="500" frameBorder="0"></iframe>
+
+						        <h4><strong>Table 2: Overall Market Sentiment Of Glossier Competitors</strong></h4>
+						        <iframe src="images/nlp/ competitor_sent_table.html" width="100%" height="500" frameBorder="0"></iframe>
+
+						        <h2>Analysis</h2>
+
+						        <p>The analysis conducted in this section is aimed at analyzing text data only. As such, not all business goals have been addressed and some business questions may only be addressed in part. Contrary to the previous EDA section, this analysis is structured by the business goal addressed.</p>
+
+      							<h3>Business Goal 1: Should Glossier focus on store expansion? If so,where should Glossier open their next store?</h3>
+								
+								<p>As Glossier continues to expand to in-store shopping options, our team wanted to explore where Glossier may find customer demand for a brick and mortar option. Due to limitations with geospatial NLP analysis, our technical proposal deviated from its initial structure. First, instead of parsing comments to identify where geospatial terms are mentioned, we added additional data sources. The first was a dataset that contained posts and comments related to Glossier. Second, we made a pull to the Twitter API to identify tweets mentioning @glossier and collected the text along with the geotagged locations from the user profile bios. Third, we used the Reddit API to get data from a separate subreddit that asked users where Glossier should open their next store. After joining these datasets, we were able to match the cities mentioned across posts and gather their coordinates via a geographical dataset from <a href="https://dev.maxmind.com/geoip/geolite2-free-geolocation-data?lang=en" target="_blank">Geolite2</a>.  Second, instead of leveraging sentiment analysis to gauge Glossier popularity, our revised approach leveraged Glossier activity as a proxy for this demand.</p>
+
+								<p>Figure 1 displays the popularity of Glossier across multiple locations, where the bubbles indicate the number of times Glossier was mentioned in the corresponding city. Overall, we found that social media users requested stores in major cities across the US and Europe. Interestingly, some of these cities are those where Glossier has already created limited time pop-up stores. Many users are also based in the cities which already have stores, including both Seattle and Brooklyn. It is also worth mentioning that more general areas of interest include the Nordic countries (Sweden, Norway, Denmark) and Malaysia, suggesting widespread and international demand. Table 3 displays the top cities that have Glossier interest as a percentage of total demand. It suggests that new cities for expansion include San Francisco and Chicago. However, it is imperative to point out that the number of times cities were mentioned were extremely low overall and may be indicative that social media is not an accurate tactic of gauging demand.</p>
+
+								<h4><strong>Figure 1</strong></h4>
+      							<img src="images/nlp/businessq1_choropleth.png" width="100%" height="600">
+
+      							<h4><strong>Table 3: Top Cities With Glossier Interest</strong></h4>
+      							<iframe src="images/nlp/ cities_table.html" width="100%" height="500" frameBorder="0"></iframe> 
+
+      							<h3>Business Goal 2: What products should be in the newest Glossier kit?</h3>
+
+      							<p>To address this, we first identified which products each Glossier comment and post contained. We developed a model to calculate the sentiment of each post and comment and assigned it to all of the products mentioned in that same post or comment. A ratio that represents the number of times a product was mentioned in a post or comment for each sentiment (positive, negative, or neutral) over the total number of times the product was mentioned was calculated. This technical proposal deviated from its initial structure slightly; instead of leveraging counts for the visuals, we leveraged percentages and instead of using a faceted chart, we used separate charts for each sentiment. The first modification was made because the percentage/ratio is a better indicator of true sentiment, aids with comparison across products, and is visually more appealing as all values are between 0-100. The second modification was made because our intent is to compare products within each sentiment group and not products across each sentiment; separate charts are more conducive for this objective.</p>
+
+      							<p>The top 10 products with the highest ratio were identified for positive, negative, and neutral sentiments. From Figure 2 below and Table 1 above, it is evident that limited edition (le), protip, and generation g products should be in the newest Glossier kit as they have high positive sentiment when mentioned and are mentioned a large number of times. From Figure 3 below, it is evident that the after balm, roller ball, retinol, monochromes, and cleanser products should not be in the newest Glossier kit as they have high negative sentiment when mentioned. As a next step, we will explore some negative comments to understand why these products are associated with poorer sentiment and consider discontinuing them altogether.</p>
+
+      							<h4><strong>Figure 2</strong></h4>
+     							<iframe src="images/nlp/glossier_pos_sent_viz.html" width="100%" height="900" frameBorder="0"></iframe> 
+
+							    <h4><strong>Figure 3</strong></h4>
+							    <iframe src="images/nlp/glossier_neg_sent_viz.html" width="100%" height="900" frameBorder="0"></iframe> 
+
+    							<h3>Business Goal 3:  Which products are most common amongst competitors (Sephora, Ulta, and Fenty)? Does this open up an opportunity to capitalize on market share?</h3>
+
+    							<p>This analysis pulled all Sephora, Ulta, and Fenty Reddit activity and performed NLP and sentiment analysis to determine market sentiment of Glossier competitors. The model assigned each post a positive, negative, or neutral sentiment value. We also searched posts for keywords based on general products sold at these stores to infer market sentiment of specific products. In knowing this, Glossier will be able to determine competitive market opportunities by product. Similar to above, this technical proposal deviated from its initial structure slightly; instead of leveraging counts for the visuals, we leveraged percentages and instead of using a faceted chart, we have one chart showing positive sentiment by product for each competitor. It is worth noting that the product list leveraged for this analysis deviated from the internal list used for Glossier, in order to better compare across brands. Thus, we will only compare products amongst competitors and not to Glossier. Figure 4 illustrates percent positive posts of general products by competitors. It is clear that Sephora product sentiment is much more positive than either Ulta or Fenty. Makeup products sold by Sephora are more positively regarded than skincare cleansers and perfume. Fenty overall sentiment by product is much less positive than Sephora or Ulta. As such, we consider Sephora the golden standard and will explore their business strategies to potentially adopt.</p>
+
+    							<h4><strong>Figure 4</strong></h4>
+   								<iframe src="images/nlp/competitor_sentiment_viz.html" width="100%" height="900" frameBorder="0"></iframe> 
+
+      							<h3>Business Goal 5: How has demand for Glossier been affected by COVID-19 rates? Can we get an understanding of what the relationship between the two may look like for the future?</h3>
+
+      							<p>Figure 5 shows the daily global new cases of COVID-19 overlaid with the daily Reddit activity relating to Glossier. Data on global COVID-19 cases and deaths from January 2021 to August 2022 was collected from the <a href="https://covid19.who.int/data" target="_blank">World Health Organization</a>.  Both the COVID-19 dataset and the Glossier dataset were aggregated by day and joined on day. In a future step, we will develop a multivariate time series ML model to forecast disease rates in conjunction with the demand using Glossier Reddit activity as a proxy for Glossier demand. The data was visualized in this step to show progress in collecting and incorporating external data and to aid in hypothesizing the outcome. One can see from the figure that there is clear seasonality in both COVID-19 new case rates as well as Glossier Reddit activity. They seem to peak and dip sequentially during this time period. Glossier activity seems to peak before the holidays and COVID-19 global cases spiked right after the holidays due to travel and social activity. We hypothesize that COVID-19 and Glossier demand are more related to the holidays than to each other.</p>
+
+      							<h4><strong>Figure 5</strong></h4>
+      							<iframe src="images/nlp/covid_viz.html" width="100%" height="900" frameBorder="0"></iframe>
+
+      							<h3>Business Goal 6: What is the average persona of a Glossier customer? In other words, what does our consumer base look like?</h3>
+
+      							<p>The initial technical proposal focused on user demographics. However, because we do not have the real name of the user to assess gender nor a criterion to extract age from the text, we amended the question and technical proposal to focus on user behavior. For users who post in the Glossier, Ulta, Fenty, and Sephora subreddits, we will identify their total activity by joining other subreddits and counting the number of other subreddits these users post to. We will also get the average score of the posts for each user. We will then use NLP techniques to identify the sentiment score of each post. We will then average sentiment score, score, and activity for each brand to get glean what the average persona looks like across competitors. The output will be depicted via bar charts to contrast competitor information. Figure 6 allows us to see the Reddit average sentiment, score, and number of comments for each brand. It is clear that Glossier has the highest sentiment, number of comments, and average score. This is indicative that Glossier customers have a positive perception and are more interactive than the customers of competitive brands. It is also clear that the average sentiment for each user is similar across brands and there isn’t a lot of fluctuation, indicating customers feel similarly across brands.</p>
+
+								<h4><strong>Figure 6</strong></h4>
+								<iframe src="images/nlp/avg_persona_viz.html" width="100%" height="900" frameBorder="0"></iframe>
+
+								<h3>Business Goal 9: Are Google trend searches predictive of daily user sentiment?</h3>
+
+								<p>In order to get a more complete understanding of how Glossier compares to its competitors, we joined the reddit glossier and competitor datasets to <a href="https://trends.google.com/trends/?geo=US" target="_blank">Google trends data</a>. The google trends data was limited to the same timeframe as the reddit data and was pulled via an API call for four make-up brands: Glossier, Sephora, Ulta and Fenty. After collecting the google trends data, we conducted exploratory data analysis and developed charts to compare the four brands in Figure 7. Figure 7 shows that Google search trend activity follows two different distribution shapes. Fenty and Glossier searches form a right skewed distribution, meaning that most search trends tend to hover around a specific number while Sephora and Ulta do not seem to have a clear peak. As a result, search trends for Glossier and Fenty seem to be consistent while searches for Sephora and Ulta vary quite a bit over time.</p>
+
+								<p>To calculate sentiment, we developed a sentiment model and assigned a category to each post. We then created our own dummy variables and assigned positive a score of 2, neutral a score of 1, and negative a score of 0. These scores were then averaged by day and brand. The google trends data was then joined to the aggregated datasets. The next step of this analysis will determine whether there is a correlation between normalized google searches and sentiment score via experimentation and statistical techniques.</p>
+
+								<h4><strong>Figure 7</strong></h4>
+    							<iframe src="images/nlp/google_eda_viz1.html" width="100%" height="900" frameBorder="0"></iframe>
+
+    							<h3>Business Goal 10: Is sustainability on the top of Glossier customers minds? Should Glossier focus its efforts on making their products and practices more sustainable?</h3>
+
+    							<p>This question assessed Reddit user conversations surrounding Glossier. Specifically, we hoped to see if there were discussions about sustainability practices within the company. To delve into this, we gathered the r/Glossier subreddit posts and comments and cleaned that data by removing missing values, tokenizing, special characters, and stopwords (custom and from the nltk package). From this point, we created a corpus of the text and captured the term document frequency through bag of words. Finally, we used an LDA model to gather the words that belong to a topic via probabilities. We honed in on ten topics and created a visualization to view the 30 most frequently used terms within each one, as seen in Figure 8. As expected from prior analysis, most of the conversation focused on products as opposed to other potential topics like sustainability or store expansion. The LDA model separated conversations around products; for example, one topic seemed to focus on skin and skincare products while the other focused on Glossier’s blush range. Nearly all of the ten topics centered around products, but we did see one topic surrounding customer service or the concerns surrounding the company. As such, we identified that sustainability was not on the top of Glossier customers’ minds.</p>
+
+    							<h4><strong>Figure 8</strong></h4>
+    							<iframe src="images/nlp/ldavis_prepared_10.html" width="100%" height="900" frameBorder="0"></iframe>
+
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<h2>Let's get in touch</h2>
+							<dl class="alt">
+								<dt>City</dt>
+								<dd>Arlington, VA &bull; USA</dd>
+								<dt>Email</dt>
+								<dd><a href="mailto:clare.garberg@gmail.com?subject=Hello!">clare.garberg@gmail.com</a></dd>
+								<dt>Download</dt>
+								<dd><a href="../../clare_garberg_resume.pdf">my resume</a></dd>
+							</dl>
+							<ul class="icons">
+								<li><a href="https://www.linkedin.com/in/clare-garberg-m-s-b93bb7110/" class="icon brands fa-linkedin alt"><span class="label">Linkedin</span></a></li>
+								<li><a href="https://github.com/garbergc" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+								<li><a href="mailto:clare.garberg@gmail.com?subject=Hello!" class="icon solid fa-envelope alt"><span class="label">Mail</span></a></li>
+								<li><a href="../../clare_garberg_resume.pdf" class="icon solid fa-download alt"><span class="label">Resume</span></a></li>
+							</ul>
+						</section>
+						<p class="copyright">Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+	</body>
+</html>

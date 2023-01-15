@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Clare Garberg</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1>Glossier Business Insights</h1>
+						<h3>A "big data" analysis using PySpark and Azure Databricks.</h3>
+						<p>By: Clare Garberg, Stephanie Plaza, Amalia Stahl, Kajal Tiwary</p>
+					</header>
+
+					<ul class="icons">
+						<li><a href="../../index.html" class="icon solid fa-home alt"><span class="label">Home</span></a></li>
+					</ul>
+
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="big_data_glossier_intro.html">Introduction</a></li>
+							<li><a href="big_data_glossier_eda.html">Exploratory Data Analysis</a></li>
+							<li><a href="big_data_glossier_nlp.html">Natural Language Processing</a></li>
+							<li><a href="big_data_glossier_ml.html">Machine Learning</a></li>
+							<li><a href="big_data_glossier_conclusion.html" class="active">Conclusion</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Content -->
+							<section id="content" class="main">
+								<h2>Conclusions And Recommendations</h2>
+
+								<p>The intent of this comprehensive research was to understand which areas of Glossier’s business executives should focus on, along with establishing potential tactics to improve the bottom line. Specifically, we explore customer behavior, products, demand, and competition. To address these objectives, Reddit data was explored and regarded as a microcosm of the Glossier community. Exploratory analysis was leveraged to glean descriptive insights, natural language processing was utilized to understand sentiment, and machine learning was employed to draw predictive insights and forecasts.</p>
+
+								<p>First and foremost, we examined the behaviors and interactions of our customers. We deduced that our customer base is largely composed of those in the younger generation. They tend to interact with sports and investment communities and be avid users of the Reddit platform. And, the average customer accumulates a large number of upvotes and comments on their posts and has a positive sentiment of the brand. We also attempted to understand whether the interactions of our customers on the platform were indicative of their sentiment. Unfortunately, customer post and comment behavior in addition to the number of upvotes received on posts were not indicative of sentiment. In addition to the Reddit platform behavior, we also explored google search trends as a proxy for general demand. We identified that google search behavior is also not predictive of sentiment towards the brand. Thus, we cannot predict which users will have a positive or negative sentiment in an accurate manner. We strongly believe more analysis is required to determine what drives consumer sentiment and how we improve customer experience. And, finally, we deduced that sustainability is not nearly as important as products to Glossier customers. Product initiatives should be prioritized over sustainability initiatives and marketing material should be tailored to younger consumer audiences. </p>
+
+								<p>Instead, Glossier customers seemed very focused on products in their online discussions, such as skincare and blush. We found that hairclips, cordial, limited edition (le), protip, and generation g products were most frequently mentioned in a positive capacity, while after balm, rollerball, retinol, monochromes, and cleanser products were most frequently mentioned in a negative capacity. However, since cordial and hair clip products were mentioned minimally as evident in Table 1, we determined that limited edition, protip, and generation and products were the most optimal candidates for products in our next kit. On the other hand, Glossier should look into options to improve the undesirable afterbalm, rollerball, and retinol products after exploring why they are so negatively regarded.</p>
+
+								<h4><strong>Table 1: Overall Market Sentiment Of Top 10 Glossier Products</strong></h4>
+    							<iframe src="images/nlp/ glossier_sent_table.html" width="100%" height="500" frameBorder="0"></iframe> 
+
+						        <p>In order to understand demand, we explored the frequency that Glossier was mentioned over time from January 2021 to August 2022. It was evident that popularity peaked during the holiday time frame; this aligns to expectations as purchasing frequency generally increases during these months. Additionally, the popularity dipped in the summer months and increased during the spring months.  This Glossier-related Reddit activity was then used as a proxy for Glossier demand. One potential reason this behavior occurred is because activity increases in the spring to prepare for the summer when new beauty products are desired for the season. Glossier should consider rolling out their new kits and products around the holidays to take advantage of the seasonal patterns. Additionally, Glossier demand is forecasted to remain stagnant for September 2022, which follows a similar pattern from the previous year. Thus, Glossier can maintain its current inventory and resources without concern of demand outweighing supply. We had initially hypothesized that Covid-19 rates and Glossier popularity were intertwined; but, after exploring the correlation further, we determined that disease cases and deaths have no effect on demand. </p>
+
+						        <p>To put these findings into better context, we assessed them against three of Glossier’s largest competitors - Ulta, Fenty, and Sephora. From a demand outlook, Ulta’s demand is expected to increase in September 2022 in contrast to the stagnant forecasts of Glossier. This indicates that Ulta has more interest from consumers than does Glossier. One potential tactic to increase market share would be for Glossier to partner with Ulta to sell their products in stores that sell more brands and gain market awareness. From a customer perspective, the Glossier average customer had higher sentiment, number of comments, and number of interactions on their posts than their competitors as seen in Figure 1. This is indicative that Glossier has a positive perception amongst its competitors. We also determined that Sephora has the highest positive product sentiment over Ulta and Fenty, as depicted in Figure 2. It would be helpful to have more information on Glossier’s internal marketing, growth, and resource strategies to understand why their products are regarded so well. </p>
+
+						      	<h4><strong>Figure 1</strong></h4>
+						    	<iframe src="images/nlp/competitor_sentiment_viz.html" width="100%" height="900" frameBorder="0"></iframe> 
+
+						      	<h4><strong>Figure 2</strong></h4>
+						    	<iframe src="images/conclusion/Figure2_final.html" width="100%" height="900" frameBorder="0"></iframe> 
+
+
+						    	<center><h2>Next Steps</h2></center>
+
+						      	<p>To bolster these findings and strategies, subsequent research can include financial data to get a more accurate representation of sales cycles, inventory, and revenue. Additionally, we can expand the analysis in understanding the average customer persona; Glossier can conduct additional customer research and administer surveys to get an in depth picture of who their consumers are, how to target them, and what their preferences are. In line with our recommendations, Glossier has announced an upcoming partnership with Sephora in January 2023, where their products will be available at an outside retailer for the first time. We expect a huge influx of new data and encourage the Glossier executive team to utilize the information to track differences between Glossier customers and the newfound ones at Sephora. </p>
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<h2>Let's get in touch</h2>
+							<dl class="alt">
+								<dt>City</dt>
+								<dd>Arlington, VA &bull; USA</dd>
+								<dt>Email</dt>
+								<dd><a href="mailto:clare.garberg@gmail.com?subject=Hello!">clare.garberg@gmail.com</a></dd>
+								<dt>Download</dt>
+								<dd><a href="../../clare_garberg_resume.pdf">my resume</a></dd>
+							</dl>
+							<ul class="icons">
+								<li><a href="https://www.linkedin.com/in/clare-garberg-m-s-b93bb7110/" class="icon brands fa-linkedin alt"><span class="label">Linkedin</span></a></li>
+								<li><a href="https://github.com/garbergc" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+								<li><a href="mailto:clare.garberg@gmail.com?subject=Hello!" class="icon solid fa-envelope alt"><span class="label">Mail</span></a></li>
+								<li><a href="../../clare_garberg_resume.pdf" class="icon solid fa-download alt"><span class="label">Resume</span></a></li>
+							</ul>
+						</section>
+						<p class="copyright">Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+	</body>
+</html>
